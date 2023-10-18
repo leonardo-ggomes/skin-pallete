@@ -2,45 +2,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const svgObject = document.getElementById("svgObject")  
 
+    // Cadastrar skins
+    const config = [
+        {
+           id: "cor-1",
+           event: "input", 
+           default: "",
+           query: ".detalhe"
+        },
+        {
+            id: "cor-2",
+            event: "input",
+            default: "",
+            query: ".sombra"
+        },
+        {
+            id: "cor-3",
+            event: "input",
+            default: "",
+            query: ".pano"
+        },
+        {
+            id: "btnWhite",
+            event: "click",
+            default: "#ffb6b6",
+            query: ".skin"
+        },
+        {
+            id: "btnBlack",
+            event: "click",
+            default: "#570000",
+            query: ".skin"
+        }
+    ]
+
+
     svgObject.addEventListener("load", () => {
         let svgDoc = svgObject.contentDocument;
 
-        document.getElementById("cpShoes").addEventListener("input", (colorpicker) => {
-            let chosenColor = colorpicker.target.value
-            let shirtSleeve = svgDoc.querySelectorAll(".shoes")
-        
-            shirtSleeve.forEach(sleeve => sleeve.setAttribute("fill",chosenColor));
+        config.forEach(option => {
+            document.getElementById(option.id).addEventListener(option.event, (e) => {
+                let input = option.default == "" ? e.target.value : option.default
+                let elemento = svgDoc.querySelectorAll(option.query)
+            
+                elemento.forEach(el => el.setAttribute("fill",input));
+            })
         })
-    
-        document.getElementById("cpShirt").addEventListener("input", (colorpicker) => {
-            let chosenColor = colorpicker.target.value
-            let shirtBody = svgDoc.querySelectorAll(".shirt-body")
-        
-            shirtBody.forEach(body => body.setAttribute("fill",chosenColor));
-        })
-
-        document.getElementById("cpHair").addEventListener("input", (colorpicker) => {
-            let chosenColor = colorpicker.target.value
-            let shirtBody = svgDoc.querySelectorAll(".hair")
-        
-            shirtBody.forEach(body => body.setAttribute("fill",chosenColor));
-        })
-
-        document.getElementById("btnWhite").addEventListener("click", (colorpicker) => {
-            let chosenColor = "#ffb6b6"
-            let shirtBody = svgDoc.querySelectorAll(".skin")
-        
-            shirtBody.forEach(body => body.setAttribute("fill",chosenColor));
-        })
-
-        document.getElementById("btnBlack").addEventListener("click", (colorpicker) => {
-            let chosenColor = "#570000"
-            let shirtBody = svgDoc.querySelectorAll(".skin")
-        
-            shirtBody.forEach(body => body.setAttribute("fill",chosenColor));
-        })
-
-
     })
 })
 

@@ -6,6 +6,10 @@
 
 
 .bg-screen{
-    background-color: #a9a9a9;
+    background-color: #bbbbbb;
 }
 
+#svgObject{
+    width: 100%;
+    height: 100%;
+}
